@@ -22,8 +22,8 @@
               <tr v-for="report in reports" :key="report.id">
                 <td>{{ report.customer_name }}</td>
                 <td>{{ report.table_quant }}</td>
-                <td><i class="icon-pencil" title="Editar" v-on:click="showModal(report.table_id)"></i></td>
-                <td><i class="icon-trash" title="Excluir" v-on:click="deleteTable(report.table_id)"></i></td>
+                <td><button class="btn btn-green transition radius" title="Editar" v-on:click="showModal(report.table_id)">Editar</button></td>
+                <td><button class="btn btn-red transition radius" title="Excluir" v-on:click="deleteTable(report.table_id)">Excluir</button></td>
               </tr>
             </tbody>
           </table>
@@ -41,9 +41,8 @@
             <p>Informe a quantida de mesas que deseja lançar.</p>
           </header>
           <form @submit.prevent="" method="post">
-            <!-- <label>Cliente: {{ events.name }}</label> -->
             <input class="radius" type="number" min="1" placeholder="Quantidade: (somente números)" v-model.lazy="table.table_quant"  required />
-            <button class="btn btn-yellow transition radius" alt="[Atualizar Mesas]" title="Atualizar Mesas" v-on:click="updateTable(table.table_id, table.table_quant)">Atualizar Mesas <i class="icon-pencil"></i> </button>
+            <button class="btn btn-yellow transition radius" alt="[Atualizar Mesas]" title="Atualizar Mesas" v-on:click="updateTable(table.table_id, table.table_quant)">Atualizar Mesas</button>
             <span class="btn btn-red radius transition" title="Fechar Modal" v-on:click="showModal">Close</span>
           </form>
         </div>

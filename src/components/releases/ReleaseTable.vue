@@ -10,7 +10,7 @@
             <label>Selecione o local do evento</label>
             <select v-model="selected">
               <option disabled value="">Selecione o local do evento</option>
-              <option v-for="evento in events" :key="evento.id" v-bind:value="evento.customerId">{{ evento.event_local }}</option>
+              <option v-for="evento in events" :key="evento.id" v-bind:value="evento.customer_id">{{ evento.event_local }}</option>
             </select>
             <button class="btn btn-yellow transition radius" v-on:click.prevent="getEventCustomer" alt="[Buscar]" title="Buscar">Buscar</button>
           </div>
@@ -38,11 +38,11 @@
                 <td>{{ release.customerId }}</td>
                 <td>{{ release.customer_name }}</td>
                 <td>{{ release.event_name }}</td>
-                <td>{{ release.eventQuantMesas }}</td>
-                <td><i class="icon-pencil" title="Editar"></i></td>
-                <td><i class="icon-trash" title="Excluir"></i></td>
+                <td>{{ release.event_quant_mesas }}</td>
+                <td><button class="btn btn-green transition radius" title="Editar">Editar</button></td>
+                <td><button class="btn btn-red transition radius" title="Excluir">Excluir</button></td>
                 <td>
-                  <span class="btn btn-green radius transition" title="Lançar Mesas" v-on:click="showModal(release.event_id)">Lançar</span>
+                  <span class="btn btn-yellow radius transition" title="Lançar Mesas" v-on:click="showModal(release.event_id)">Lançar</span>
                 </td>
               </tr>
             </tbody>

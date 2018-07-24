@@ -414,6 +414,7 @@ table td i:hover{
 /* CONTENT */
 .content {
   width: 90%;
+  margin: 0 auto;
 }
 
 .main .content {

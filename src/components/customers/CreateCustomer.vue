@@ -27,7 +27,7 @@
           </div>
 
           <div class="flex-1">
-            <button class="btn btn-green transition radius" type="button" name="button" alt="[Cadastrar Cliente]" title="Cadastrar Cliente" v-on:click.prevent="post">Cadastrar Cliente <i class="icon-user-add"></i> </button>
+            <button class="btn btn-green transition radius" type="button" name="button" alt="[Cadastrar Cliente]" title="Cadastrar Cliente" v-on:click.prevent="post">Cadastrar Cliente</button>
           </div>
         </form>
       </div>
@@ -40,6 +40,8 @@ export default {
 
   data () {
     return {
+      service: 'http://localhost:8000/api/customers',
+      endPoint: '',
       customer: {
         customer_name: '',
         customer_cpf: '',
@@ -50,12 +52,15 @@ export default {
   },
   methods: {
     post: function () {
-      const service = 'http://localhost:8000/api/customers'
-
-      this.$http.post(service, this.customer).then(response => {
-
+      this.customer.customer_cpf = this.customer.customer_cpf.replace(/[^\d]+/g,'')
+      this.customer.customer_cep = this.customer.customer_cep.replace(/[^\d]+/g,'')
+      this.$http.post(this.service, this.customer).then(response => {
+        if (response.body.success) {
+          alert('Usuário inserido com sucesso!!');
+          this.$router.push({name: 'ReadCustomers'})
+        }
       })
-    }
+    },
   }
 }
 </script>

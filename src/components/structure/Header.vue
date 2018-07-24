@@ -17,9 +17,8 @@
           <li class="main_header_content_ul_li transition" style="color: var(--green);">Cliente
             <ul class="main_header_content_ul_li_ul">
               <li class="transition radius main_header_content_ul_li_ul_li">
-                <router-link class="transition radius" to="/customers/create-customer" exact>Cadastrar Cliente <i class="icon-user-add"></i> </router-link>
-                <router-link class="transition radius" to="/customers/edit-customer" exact>Editar Cliente <i class="icon-user-add"></i> </router-link>
-                <router-link class="transition radius" to="/customers/read-customers" exact>Listar Clientes <i class="icon-user-add"></i> </router-link>
+                <router-link class="transition radius" to="/customers/create-customer" exact>Cadastrar Cliente</router-link>
+                <router-link class="transition radius" to="/customers/read-customers" exact>Listar Clientes</router-link>
               </li>
             </ul>
           </li>
