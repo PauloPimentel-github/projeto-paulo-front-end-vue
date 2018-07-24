@@ -22,11 +22,13 @@
 <script>
 
 import $Scriptjs from 'scriptjs'
+import image from "../../assets/img/loc.png"
 
 export default {
 
   data () {
     return {
+      loc: imgage,
       service: 'https://projeto-paulo-back-end.herokuapp.com/api',
       endPoint: ''
     }
@@ -45,13 +47,13 @@ export default {
             title: 'Avenida Pequeno Principe, 800<br>Flopis/SC',
             lat: -27.6763079,
             lng: -48.5005945,
-            icon: 'https://hotelmelungtse.com/wp-content/themes/hotelica-pro/images/mapicon.png'
+            icon: this.loc
           },
           {
             title: 'Guarulhos, Marcos Freire',
             lat: -23.4621978,
             lng: -46.404045,
-            icon: 'https://hotelmelungtse.com/wp-content/themes/hotelica-pro/images/mapicon.png'
+            icon: this.loc
           }
         ]
 
@@ -123,7 +125,7 @@ export default {
                     title: setLoc[0],
                     lat: parseFloat(setLoc[1]),
                     lng: parseFloat(setLoc[2]),
-                    icon: 'https:// hotelmelungtse.com/wp-content/themes/hotelica-pro/images/mapicon.png'
+                    icon: this.loc
                   })
                 })
 
@@ -135,7 +137,7 @@ export default {
                     title: setLoc[0],
                     lat: parseFloat(setLoc[1]),
                     lng: parseFloat(setLoc[2]),
-                    icon: 'https:// hotelmelungtse.com/wp-content/themes/hotelica-pro/images/mapicon.png'
+                    icon: this.loc
                   }
                 ]
                 getMap(newLoc)
