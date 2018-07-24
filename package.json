@@ -16,8 +16,11 @@
   "dependencies": {
     "express": "^4.16.3",
     "node": "^10.7.0",
+    "scriptjs": "^2.5.8",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.0.1",
+    "vue-the-mask": "^0.11.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
