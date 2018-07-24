@@ -5,6 +5,7 @@
       <h1>Google Maps</h1>
       <div class="flex">
         <div class="flex-1">
+          <label>Selecione o cliente e click no endereço apresentado.</label>
           <select class="j_customer" name="">
             <option value="">Selecione o cliente</option>
           </select>
@@ -110,7 +111,7 @@ export default {
 
           $.getJSON('https://projeto-paulo-back-end.herokuapp.com/api/google-maps/' + id, function (response) {
 
-            $('.main_map_content_locations').html('<span class="main_map_content_locations_item address" data-location="' + response.customer_address + '|' + response.customer_lat + '|' + response.customer_lng + '"><b>Endereço Cliente:</b> ' + response.customer_address + '</span><span class="main_map_content_locations_item address" data-location="' + response.event_local + '|' + response.event_lat + '|' + response.event_lng + '"><b>Local do Evento:</b> ' + response.event_local + '</span><span class="main_map_content_locations_item" data-location="' + response.customer_address + '|' + response.customer_lat + '|' + response.customer_lng + '||' + response.event_local + '|' + response.event_lat + '|' + response.event_lng + '||" title="Dê um zoom para melhorar a visão e a distância!"><b>Comparar Localidades:</b></span>')
+            $('.main_map_content_locations').html('<span class="main_map_content_locations_item address" data-location="' + response.customer_address + '|' + response.customer_lat + '|' + response.customer_lng + '"><b>Endereço Cliente:</b> ' + response.customer_address + '</span><span class="main_map_content_locations_item address" data-location="' + response.event_local + '|' + response.event_lat + '|' + response.event_lng + '"><b>Local do Evento:</b> ' + response.event_local + '</span><span class="main_map_content_locations_item" data-location="' + response.customer_address + '|' + response.customer_lat + '|' + response.customer_lng + '||' + response.event_local + '|' + response.event_lat + '|' + response.event_lng + '||" title="Dê um zoom para melhorar a visão e a distância!"><b>Comparar Localidades: dê um zoom para visualizar melhor !!</b></span>')
             $('.main_map_content_locations').fadeIn(1000)
             // seta o mapa no endereço do cliente e no local do evento
             $('.main_map_content_locations_item').on('click', function () {

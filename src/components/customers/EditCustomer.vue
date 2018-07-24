@@ -41,7 +41,7 @@ export default {
 
   data () {
     return {
-      service: 'http://localhost:8000/api/customers',
+      service: 'https://projeto-paulo-back-end.herokuapp.com/api/customers',
       id: this.$route.params.id,
       triggerSuccess: '',
       customer: {
@@ -65,6 +65,7 @@ export default {
       this.$http.put(this.service + '/' + this.id, this.customer).then(response => {
         if (response.body.success) {
           this.triggerSuccess = response.body.success
+          alert('Atualizado com sucesso');
         }
       })
     },

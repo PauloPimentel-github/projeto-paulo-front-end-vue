@@ -2,7 +2,7 @@
 <template>
   <div class="main_create_event" id="">
     <div class="main_create_event_content content">
-      <h1>Editar Evento</h1>
+      <h1>Editar Evento (em desenvolvimento)</h1>
       <div class="trigger trigger-success radius icon-success" v-if="this.triggerSuccess != ''">{{ triggerSuccess }}</div>
 
       <div class="main_create_event_content_form">
@@ -49,7 +49,7 @@ export default {
 
   data () {
     return {
-      service: 'http://localhost:8000/api',
+      service: 'https://projeto-paulo-back-end.herokuapp.com/api',
       endPoint: '',
       selected: '',
       triggerSuccess: '',

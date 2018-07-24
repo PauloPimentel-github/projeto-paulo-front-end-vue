@@ -35,8 +35,8 @@ export default {
 
   data () {
     return {
-      service: 'http://localhost:8000/api/customers',
-      endPoint: '',
+      service: 'https://projeto-paulo-back-end.herokuapp.com/api',
+      endPoint: '/customers',
       triggerSuccess: '',
       customers: {},
       customer: {
@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     get: function () {
-      this.$http.get(this.service).then(response => {
+      this.$http.get(this.service + this.endPoint).then(response => {
         if (response.body) {
           this.customers = response.body
         }

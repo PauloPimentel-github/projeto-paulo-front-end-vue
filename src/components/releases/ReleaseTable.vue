@@ -35,7 +35,7 @@
             </thead>
             <tbody>
               <tr v-for="release in releases" :key="release.id">
-                <td>{{ release.customerId }}</td>
+                <td>{{ release.customer_id }}</td>
                 <td>{{ release.customer_name }}</td>
                 <td>{{ release.event_name }}</td>
                 <td>{{ release.event_quant_mesas }}</td>
@@ -63,9 +63,7 @@
           </header>
           <div class="trigger trigger-info radius icon-info" v-if="this.triggerInfo != ''">{{ triggerInfo }}</div>
           <form @submit.prevent="" method="post">
-            <!-- <input class="radius" type="email" placeholder="" /> -->
-            <!-- <label>Cliente: {{ events.name }}</label> -->
-            <input class="radius" type="number" min="1" placeholder="Quantidade: (somente números)" v-model.lazy="table.tableQuant"  required />
+            <input class="radius" type="number" min="1" placeholder="Quantidade: (somente números)" v-model.lazy="table.table_quant"  required />
             <button class="btn btn-green transition radius icon-success" alt="[Cadastrar]" title="Cadastrar" v-on:click="postTables">Cadastrar</button>
             <span class="btn btn-red radius transition" title="Fechar Modal" v-on:click="showModal">Close</span>
           </form>
@@ -83,16 +81,16 @@ export default {
 
   data () {
     return {
-      service: 'http://localhost:8000/api',
+      service: 'https://projeto-paulo-back-end.herokuapp.com/api',
       endPoint: '',
       selected: '',
       events: {},
       releases: {},
       isModal: true,
       table: {
-        customerId: '',
-        eventQuantMesas: '',
-        tableQuant: ''
+        customer_id: '',
+        event_quant_mesas: '',
+        table_quant: ''
       },
       triggerSuccess: '',
       triggerInfo: ''
@@ -119,9 +117,9 @@ export default {
       this.endPoint = '/release-tables'
       const url = this.service + this.endPoint
 
-      if (this.table.tableQuant > this.table.tableQuantMesas) {
-        this.triggerInfo = 'Indisponível, total disponível no momento: ' + this.table.tableQuantMesas
-        this.table.tableQuant = ''
+      if (this.table.table_quant > this.table.event_quant_mesas) {
+        this.triggerInfo = 'Indisponível, total disponível no momento: ' + this.table.event_quant_mesas
+        this.table.table_quant = ''
       } else {
         this.$http.post(url, this.table).then(response => {
           this.releases = response.body
@@ -135,12 +133,12 @@ export default {
       const url = this.service + this.endPoint
 
       this.$http.get(url).then(response => {
-        this.table.tableQuantMesas = response.body[0].event_quant_mesas
+        this.table.event_quant_mesas = response.body[0].event_quant_mesas
       })
     },
     showModal: function (customerId) {
       this.isModal = !this.isModal
-      this.table.customerId = customerId
+      this.table.customer_id = customerId
       this.getEventQuantTable(customerId)
     }
   },
