@@ -28,7 +28,7 @@ export default {
 
   data () {
     return {
-      loc: imgage,
+      loc: image,
       service: 'https://projeto-paulo-back-end.herokuapp.com/api',
       endPoint: ''
     }
@@ -41,19 +41,20 @@ export default {
 
     $Scriptjs('https://code.jquery.com/jquery-3.3.1.js', () => {
       $(function () {
+        var icon = this.loc
         /* GOOGLE MAPS */
         var locations = [
           {
             title: 'Avenida Pequeno Principe, 800<br>Flopis/SC',
             lat: -27.6763079,
             lng: -48.5005945,
-            icon: this.loc
+            icon: icon
           },
           {
             title: 'Guarulhos, Marcos Freire',
             lat: -23.4621978,
             lng: -46.404045,
-            icon: this.loc
+            icon: icon
           }
         ]
 
@@ -125,7 +126,7 @@ export default {
                     title: setLoc[0],
                     lat: parseFloat(setLoc[1]),
                     lng: parseFloat(setLoc[2]),
-                    icon: this.loc
+                    icon: icon
                   })
                 })
 
@@ -137,7 +138,7 @@ export default {
                     title: setLoc[0],
                     lat: parseFloat(setLoc[1]),
                     lng: parseFloat(setLoc[2]),
-                    icon: this.loc
+                    icon: icon
                   }
                 ]
                 getMap(newLoc)
