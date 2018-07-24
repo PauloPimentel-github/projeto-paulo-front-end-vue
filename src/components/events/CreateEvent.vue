@@ -11,7 +11,7 @@
               <label>Selecione o Cliente</label>
               <select v-model="selected">
                 <option disabled value="">Selecione o local do evento</option>
-                <option v-for="customer in customers" v-bind:value="customer.customer_id">{{ customer.customer_name }}</option>
+                <option v-for="customer in customers" v-bind:value="customer.customer_id" :key="customer.id">{{ customer.customer_name }}</option>
               </select>
           </div>
           <div class="flex-1">
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     get: function () {
-      this.endPoint = '/customers';
+      this.endPoint = '/customers'
       this.$http.get(this.service + this.endPoint, this.evento).then(response => {
         if (response.body) {
           this.customers = response.body

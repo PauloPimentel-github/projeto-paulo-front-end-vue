@@ -414,11 +414,11 @@ table td i:hover{
 /* CONTENT */
 .content {
   width: 90%;
-  margin: 0 auto;
 }
 
 .main .content {
   width: 87%;
+  margin: 50px auto;
 }
 
 /* HEADER */
@@ -633,12 +633,12 @@ table td i:hover{
 /* FOOTER */
 .main_footer {
   width: 100%;
-  height: 60px;
-  position: absolute;
+  height: 50px;
+  position: relative;
   bottom: 0;
   background: #00264d;
   color: var(--green);
-  padding: 20px 0;
+  padding: 15px 0;
 }
 
 </style>
