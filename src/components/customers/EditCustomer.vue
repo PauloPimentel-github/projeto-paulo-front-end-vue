@@ -2,7 +2,8 @@
 <template>
   <div class="main_create_customer" id="">
     <div class="main_create_customer_content content">
-      <h1>Cadastrar Cliente</h1>
+      <h1>Editar Cliente</h1>
+      <div class="trigger trigger-success radius icon-success" v-if="this.triggerSuccess != ''">{{ triggerSuccess }}</div>
 
       <div class="main_create_customer_content_form">
         <form class="flex" @submit.prevent="" method="post">
@@ -13,7 +14,7 @@
 
           <div class="flex-1">
             <label>CPF:</label>
-            <input class="transition radius cpf" type="text" v-mask="'###.###.###-##'" v-model.lazy="customer.customer_cpf" placeholder="Informe o cpf do cliente" required />
+            <input class="transition radius cpf" type="text"  v-model.lazy="customer.customer_cpf" placeholder="Informe o cpf do cliente" required />
           </div>
 
           <div class="flex-1">
@@ -23,7 +24,7 @@
 
           <div class="flex-1">
             <label>CEP:</label>
-            <input class="transition radius cep" type="text" v-mask="'#####-###'" v-model.lazy="customer.customer_cep" placeholder="Informe o cep do cliente" required />
+            <input class="transition radius cep" type="text"  v-model.lazy="customer.customer_cep" placeholder="Informe o cep do cliente" required />
           </div>
 
           <div class="flex-1">
@@ -40,7 +41,10 @@ export default {
 
   data () {
     return {
+      service: 'http://localhost:8000/api/customers',
+      triggerSuccess: '',
       customer: {
+        customer_id: 1,
         customer_name: '',
         customer_cpf: '',
         customer_address: '',
@@ -49,12 +53,35 @@ export default {
     }
   },
   methods: {
-    post: function () {
-      const service = 'http://localhost:8000/api/customers'
+    get: function () {
+      console.log(this.$route.params.id)
+      this.$http.get(this.service + '/2').then(response => {
+        console.log(response)
 
-      this.$http.post(service, this.customer).then(response => {
+          //this.customer.customer_id = response.body.customer_id;
+          console.log(this.customer.customer_id);
 
       })
+    },
+    // post: function () {
+    //   const service = 'http://localhost:8000/api/customers/3'
+    //
+    //   this.$http.put(service, this.customer).then(response => {
+    //     if (response.body.success) {
+    //       this.triggerSuccess = response.body.success
+    //     }
+    //   })
+    // },
+    created () {
+        console.log(this.$route.params.id)
+        this.$http.get(this.service + '/2').then(response => {
+          console.log('ok')
+
+
+            //this.customer.customer_id = response.body.customer_id;
+            console.log(this.customer.customer_id);
+
+        })
     }
   }
 }

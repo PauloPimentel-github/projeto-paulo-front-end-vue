@@ -1,8 +1,8 @@
 <!-- Footer (redapé) -->
 <template>
-  <div id="" class="main_footer">
+  <footer class="main_footer">
       <div class="main_footer_content content">
-
+        <p>Paulo Pimentel</p>
       </div>
-  </div>
+  </footer>
 </template>
