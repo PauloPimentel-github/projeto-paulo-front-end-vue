@@ -77,7 +77,6 @@ export default {
         this.$http.get(this.service + '/2').then(response => {
           console.log('ok')
 
-
             //this.customer.customer_id = response.body.customer_id;
             console.log(this.customer.customer_id);
 
