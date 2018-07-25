@@ -41,8 +41,7 @@ export default {
 
   data () {
     return {
-      //service: 'https://projeto-paulo-back-end.herokuapp.com/api/customers',
-      service: 'http://localhost:8000/api/customers',
+      service: 'https://projeto-paulo-back-end.herokuapp.com/api/customers',
       endPoint: '',
       triggerError: '',
       customer: {
