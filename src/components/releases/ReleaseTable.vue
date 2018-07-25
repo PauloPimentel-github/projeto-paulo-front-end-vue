@@ -12,7 +12,7 @@
               <option disabled value="">Selecione o local do evento</option>
               <option v-for="evento in events" :key="evento.id" v-bind:value="evento.customer_id">{{ evento.event_local }}</option>
             </select>
-            <button class="btn btn-yellow transition radius" v-on:click.prevent="getEventCustomer" alt="[Buscar]" title="Buscar">Buscar</button>
+            <button class="btn btn-yellow transition radius" :disabled="isDisabled(this.selected)" v-on:click.prevent="getEventCustomer" alt="[Buscar]" title="Buscar">Buscar</button>
           </div>
         </form>
       </div>
@@ -97,10 +97,12 @@ export default {
     }
   },
   methods: {
+    isDisabled: function (selected) {
+      return selected = (selected == '' ? true : false)
+    },
     getEvents: function () {
       this.endPoint = '/release-tables'
       const url = this.service + this.endPoint
-
       this.$http.get(url).then(response => {
         this.events = response.body
       })
@@ -108,7 +110,6 @@ export default {
     getEventCustomer: function () {
       this.endPoint = '/release-tables/' + this.selected
       const url = this.service + this.endPoint
-
       this.$http.get(url).then(response => {
         this.releases = response.body
       })
@@ -116,7 +117,6 @@ export default {
     postTables: function () {
       this.endPoint = '/release-tables'
       const url = this.service + this.endPoint
-
       if (this.table.table_quant > this.table.event_quant_mesas) {
         this.triggerInfo = 'Indisponível, total disponível no momento: ' + this.table.event_quant_mesas
         this.table.table_quant = ''
@@ -143,6 +143,7 @@ export default {
     }
   },
   created () {
+    this.isDisabled()
     this.getEvents()
   }
 }

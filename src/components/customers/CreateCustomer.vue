@@ -3,6 +3,7 @@
   <div class="main_create_customer" id="">
     <div class="main_create_customer_content content">
       <h1>Cadastrar Cliente</h1>
+      <div class="trigger trigger-error radius icon-success" v-if="this.triggerError != ''">{{ triggerError }}</div>
 
       <div class="main_create_customer_content_form">
         <form class="flex" @submit.prevent="" method="post">
@@ -40,8 +41,10 @@ export default {
 
   data () {
     return {
-      service: 'https://projeto-paulo-back-end.herokuapp.com/api/customers',
+      //service: 'https://projeto-paulo-back-end.herokuapp.com/api/customers',
+      service: 'http://localhost:8000/api/customers',
       endPoint: '',
+      triggerError: '',
       customer: {
         customer_name: '',
         customer_cpf: '',
@@ -56,8 +59,13 @@ export default {
       this.customer.customer_cep = this.customer.customer_cep.replace(/[^\d]+/g,'')
       this.$http.post(this.service, this.customer).then(response => {
         if (response.body.success) {
-          alert('Usuário inserido com sucesso!!');
+          alert('Usuário inserido com sucesso!!')
           this.$router.push({name: 'ReadCustomers'})
+        } else {
+
+          for (var i in response.body) {
+            this.triggerError += response.body[i]
+          }
         }
       })
     },

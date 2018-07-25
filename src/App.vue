@@ -197,7 +197,7 @@ table td i:hover{
 
 /* TRIGGERS */
 .trigger{
-  margin-bottom: 20px;
+  margin: 15px 0px;
   color: #fff;
   font-size: 0.875em;
   background: #888;
@@ -516,7 +516,7 @@ table td i:hover{
 }
 
 .main_home_content {
-  margin-top: 15%;
+  margin-top: 15% !important;
 }
 
 .main_home .main_home_content h1 {
