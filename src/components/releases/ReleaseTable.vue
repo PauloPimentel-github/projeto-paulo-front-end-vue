@@ -12,7 +12,7 @@
               <option disabled value="">Selecione o local do evento</option>
               <option v-for="evento in events" :key="evento.id" v-bind:value="evento.customer_id">{{ evento.event_local }}</option>
             </select>
-            <button class="btn btn-yellow transition radius" :disabled="isDisabled(this.selected)" v-on:click.prevent="getEventCustomer" alt="[Buscar]" title="Buscar">Buscar</button>
+            <button class="btn btn-green transition radius" v-bind:style="{ backgroundColor: activeColor }" :disabled="isDisabled(this.selected)" v-on:click.prevent="getEventCustomer" alt="[Buscar]" title="Buscar">Buscar</button>
           </div>
         </form>
       </div>
@@ -65,7 +65,7 @@
           <form @submit.prevent="" method="post">
             <input class="radius" type="number" min="1" placeholder="Quantidade: (somente números)" v-model.lazy="table.table_quant"  required />
             <button class="btn btn-green transition radius icon-success" alt="[Cadastrar]" title="Cadastrar" v-on:click="postTables">Cadastrar</button>
-            <span class="btn btn-red radius transition" title="Fechar Modal" v-on:click="showModal">Close</span>
+            <span class="btn btn-red radius transition" title="Fechar Modal" v-on:click="closeModal">Close</span>
           </form>
         </div>
       </div>
@@ -76,14 +76,13 @@
 </template>
 
 <script>
-
 export default {
-
   data () {
     return {
       service: 'https://projeto-paulo-back-end.herokuapp.com/api',
       endPoint: '',
       selected: '',
+      activeColor: 'red',
       events: {},
       releases: {},
       isModal: true,
@@ -98,7 +97,9 @@ export default {
   },
   methods: {
     isDisabled: function (selected) {
-      return selected = (selected == '' ? true : false)
+      selected = (selected == '' ? true : false)
+      this.activeColor = (selected === true ? 'rgba(0,0,0,0.3)' : '')
+      return selected
     },
     getEvents: function () {
       this.endPoint = '/release-tables'
@@ -131,7 +132,6 @@ export default {
     getEventQuantTable: function (eventId) {
       this.endPoint = '/events-quant-tables/' + eventId
       const url = this.service + this.endPoint
-
       this.$http.get(url).then(response => {
         this.table.event_quant_mesas = response.body[0].event_quant_mesas
       })
@@ -140,6 +140,9 @@ export default {
       this.isModal = !this.isModal
       this.table.customer_id = customerId
       this.getEventQuantTable(customerId)
+    },
+    closeModal: function () {
+      this.isModal = !this.isModal
     }
   },
   created () {
