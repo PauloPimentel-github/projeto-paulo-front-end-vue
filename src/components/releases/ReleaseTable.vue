@@ -79,7 +79,7 @@
 export default {
   data () {
     return {
-      service: 'https://projeto-paulo-back-end.herokuapp.com/api',
+      service: 'http://localhost:8000/api',
       endPoint: '',
       selected: '',
       activeColor: 'red',
@@ -88,6 +88,7 @@ export default {
       isModal: true,
       table: {
         customer_id: '',
+        event_id: '',
         event_quant_mesas: '',
         table_quant: ''
       },
@@ -106,6 +107,7 @@ export default {
       const url = this.service + this.endPoint
       this.$http.get(url).then(response => {
         this.events = response.body
+        this.table.event_id = response.body.event_id
       })
     },
     getEventCustomer: function () {
@@ -115,7 +117,7 @@ export default {
         this.releases = response.body
       })
     },
-    postTables: function () {
+    postTables: function (eventId) {
       this.endPoint = '/release-tables'
       const url = this.service + this.endPoint
       if (this.table.table_quant > this.table.event_quant_mesas) {
@@ -125,21 +127,36 @@ export default {
         this.$http.post(url, this.table).then(response => {
           this.releases = response.body
           this.triggerSuccess = response.body.success
-          this.showModal()
+          let quantTables = (this.table.event_quant_mesas - this.table.table_quant)
+          let id = this.table.customer_id
+          this.updateEventQuantTables(id, quantTables)
+          this.getEventCustomer()
+          this.closeModal()
         })
       }
     },
-    getEventQuantTable: function (eventId) {
+    updateEventQuantTables: function (eventId, enventQuantTables) {
+      this.endPoint = '/release-tables/' + eventId
+      this.table.event_id = eventId
+      this.table.event_quant_mesas = enventQuantTables
+      this.$http.put(this.service + this.endPoint, this.table).then(response => {
+        this.getEventCustomer()
+      }, response => {
+        // console.log(response);
+      });
+    },
+    getEventQuantTables: function (eventId) {
       this.endPoint = '/events-quant-tables/' + eventId
       const url = this.service + this.endPoint
       this.$http.get(url).then(response => {
         this.table.event_quant_mesas = response.body[0].event_quant_mesas
       })
     },
-    showModal: function (customerId) {
+    showModal: function (eventId) {
+      console.log(eventId);
       this.isModal = !this.isModal
-      this.table.customer_id = customerId
-      this.getEventQuantTable(customerId)
+      this.table.customer_id = eventId
+      this.getEventQuantTables(eventId)
     },
     closeModal: function () {
       this.isModal = !this.isModal

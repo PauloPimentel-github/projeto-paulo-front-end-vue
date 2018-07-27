@@ -9,7 +9,7 @@
         <div class="flex-1">
           <div class="trigger trigger-success radius icon-success" v-if="this.trigger_success != ''">{{ trigger_success }}</div>
 
-          <table>
+          <table v-if="">
             <thead>
               <tr>
                 <th>Nome do Cliente</th>
@@ -59,7 +59,7 @@ export default {
 
   data () {
     return {
-      service: 'https://projeto-paulo-back-end.herokuapp.com/api',
+      service: 'http://localhost:8000/api',
       endPoint: '/report-tables',
       reports: {},
       isModal: true,
@@ -73,15 +73,12 @@ export default {
   methods: {
     getReportTables: function () {
       const url = this.service + this.endPoint
-
       this.$http.get(url).then(response => {
         this.reports = response.body
-      }, response => {
       })
     },
     updateTable: function (tableId, tableQuant) {
       const url = this.service + this.endPoint + '/' + tableId
-
       this.$http.put(url, this.table).then(response => {
         this.getReportTables()
         this.showModal()
@@ -91,7 +88,6 @@ export default {
     },
     deleteTable: function (tableId) {
       const url = this.service + this.endPoint + '/' + tableId
-
       this.$http.delete(url).then(response => {
         this.trigger_success = response.body.success
         this.getReportTables()
