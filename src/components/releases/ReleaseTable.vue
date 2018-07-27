@@ -79,7 +79,7 @@
 export default {
   data () {
     return {
-      service: 'http://localhost:8000/api',
+      service: 'https://projeto-paulo-back-end.herokuapp.com/api',
       endPoint: '',
       selected: '',
       activeColor: 'red',
