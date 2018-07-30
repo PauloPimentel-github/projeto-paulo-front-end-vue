@@ -21,6 +21,7 @@ import CreateEvent from '@/components/events/CreateEvent'
 import ReleaseTable from '@/components/releases/ReleaseTable'
 import Report from '@/components/reports/Report'
 import GoogleMaps from '@/components/maps/GoogleMaps'
+import NotFound from '@/components/notfound/NotFound'
 
 export default {
   components: {
@@ -33,7 +34,8 @@ export default {
     'create-event': CreateEvent,
     'release-table': ReleaseTable,
     'report-table': Report,
-    'google-maps': GoogleMaps
+    'google-maps': GoogleMaps,
+    'not-found': NotFound
   }
 }
 </script>

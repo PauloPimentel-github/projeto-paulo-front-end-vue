@@ -9,6 +9,7 @@ import EditEvent from '../components/events/EditEvent'
 import ReleaseTable from '../components/releases/ReleaseTable'
 import Report from '../components/reports/Report'
 import GoogleMaps from '../components/maps/GoogleMaps'
+import NotFound from '../components/notfound/NotFound'
 
 Vue.use(Router)
 
@@ -24,6 +25,7 @@ export default new Router({
     {path: '/events/edit-event', name: 'EditEvent', component: EditEvent},
     {path: '/releases/release-table', name: 'ReleaseTable', component: ReleaseTable},
     {path: '/reports/report-table', name: 'Report', component: Report},
-    {path: '/maps/google-maps', name: 'GoogleMaps', component: GoogleMaps}
+    {path: '/maps/google-maps', name: 'GoogleMaps', component: GoogleMaps},
+    {path: '*', name: 'not-found', component: NotFound}
   ]
 })
